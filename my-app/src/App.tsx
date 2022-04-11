@@ -6,6 +6,7 @@ import {WordType} from "./types/word.types";
 
 function App() {
 
+    const img = <img src="https://i.pinimg.com/originals/b0/32/10/b032103c74cd544dba4be86c10af02c7.gif" alt={"Confused man"}/>
 
     const [word, setWord] = useState([])
     const [error,setError] = useState([])
@@ -31,7 +32,7 @@ function App() {
     <div className="App">
         <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Look It Up!</a>
+                <a className="navbar-brand" href="#">SAY WHAT?</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -47,7 +48,7 @@ function App() {
                         </li>
                     </ul>
                     <form className="d-flex" id="defineform">
-                        <input className="form-control me-2" type="search" name="defineword" placeholder="What word?"
+                        <input className="form-control me-2" type="search" name="defineword" placeholder="What WHAT?"
                                aria-label="Search"/>
                             <button className="btn btn-outline-success" type="submit">Define</button>
                     </form>
@@ -57,7 +58,9 @@ function App() {
         <main className="container">
             <div className="bg-light p-5 rounded">
                 <h1>SAY WHAT?</h1>
-                <ul className="list-unstyled">
+                {word.length > 0 ? "" : img}
+
+            <ul className="list-unstyled">
                     {word.map((word:any) =>
                         <React.Fragment>
                             <h2><u>{word.word} </u></h2>
