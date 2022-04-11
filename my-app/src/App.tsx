@@ -26,7 +26,8 @@ function App() {
 
     }, [])
 
-  return (
+  // @ts-ignore
+    return (
     <div className="App">
         <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <div className="container-fluid">
@@ -55,38 +56,39 @@ function App() {
         </nav>
         <main className="container">
             <div className="bg-light p-5 rounded">
-                <h1>Definition</h1>
-                <p className="lead">{word.map((word  => word.word))}</p>
+                <h1>SAY WHAT?</h1>
                 <ul className="list-unstyled">
+                    {word.map((word:any) =>
+                        <React.Fragment>
+                            <h2><u>{word.word} </u></h2>
+                            <p></p>
+                           <li> <i>Pronunciation: {word.phonetic}</i></li>
+                            <li> <i><b>Definition: </b></i> {word.meanings[0].definitions[0].definition}</li>
+                            <li> <i><b>Synonyms: </b></i> {word.meanings[0].synonyms}</li>
+                            <li> <i><b>Antonyms: </b></i> {word.meanings[0].antonyms}</li>
+                            {word.meanings.map((meanings) => (
 
-                    {word.map((word =>
-                            <React.Fragment>
-                                <li key = {word.phonetic1}> {word.phonetic}</li>
-                                <p> </p>
-                                <li key = {word.partOfSpeech}><i>{word.meanings[0].partOfSpeech}</i></li>
-                                <li key = {word.meanings}><b>Definition : </b>{word.meanings[0].definitions[0].definition}</li>
-                                <li key = {word.meanings2}><b>Synonyms : </b>{word.meanings[0].definitions[0].synonyms != 0 ? word.meanings[0].definitions[0].synonyms : "There are none for this word in this dictionary." } </li>
-                                <li key = {word.meanings3}><b>Antonyms : </b>{word.meanings[0].definitions[0].antonyms.length != 0 ? word.meanings[0].definitions[0].antonyms : "There are none for this word in this dictionary." }</li>
-                                <p> </p>
-                                <li key = {word.partOfSpeech2}><i>{word.meanings[1].partOfSpeech}</i></li>
-                                <li key = {word.meanings4}><b>Definition : </b>{word.meanings[1].definitions[0].definition}</li>
-                                <li key = {word.meanings5}><b>Synonyms : </b>{word.meanings[1].definitions[0].synonyms != 0 ? word.meanings[1].definitions[0].synonyms : "There are none for this word in this dictionary."}</li>
-                                <li key = {word.meanings6}><b>Antonyms : </b>{word.meanings[1].definitions[0].antonyms != 0 ? word.meanings[1].definitions[0].antonyms : "There are none for this word in this dictionary."}</li>
-                            </React.Fragment>
-                    ))}
+                                <li><b>{meanings.partOfSpeech} </b>
+                                    <p></p>
+                                    <li>  <b>Antonyms:</b> {meanings.antonyms + " "} </li>
+                                    <li><b>Synonyms:</b> {meanings.synonyms + ""}</li>
+                                    <p></p>
 
-                    {/*<li>{word.map((word => word.meanings[0].partOfSpeech))}</li>*/}
-                    {/*<li>{word.map((word => word.meanings[0].definitions[0].definition))}</li>*/}
-                    {/*<li>{word.map((word => word.meanings[0].definitions[0].example))}</li>*/}
-                    {/*<li>{word.map((word => word.meanings[0].definitions[0].example))}</li>*/}
-                    {/*<li>Nested lists: (maybe synonyms and antonyms?)*/}
-                    {/*    <ul>*/}
-                    {/*        <li>are unaffected by this style</li>*/}
-                    {/*        <li>will still show a bullet</li>*/}
-                    {/*        <li>and have appropriate left margin</li>*/}
-                    {/*    </ul>*/}
-                    {/*</li>*/}
-                    {/*<li>This may still come in handy in some situations.</li>*/}
+                                 {meanings.definitions.map((definitions) => (
+                                     <React.Fragment>
+                                         <p></p>
+                                     <li><b>Definition: </b>{definitions.definition}</li>
+                                     <li><i><b>{definitions.example ? "Example: " + definitions.example :""}</b></i></li>
+                                     </React.Fragment>
+                                 ))}</li>
+                            ))}
+
+
+
+
+
+                        </React.Fragment>
+                    )}
                 </ul>
             </div>
         </main>
