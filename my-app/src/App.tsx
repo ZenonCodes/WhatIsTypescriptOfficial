@@ -59,8 +59,6 @@ function App() {
             <div className="bg-light p-5 rounded">
                 <h1>SAY WHAT?</h1>
                 {word.length > 0 ? "" : img}
-
-
             <ul className="list-unstyled">
                     {word.map((word:any) =>
                         <React.Fragment>
@@ -79,18 +77,8 @@ function App() {
                                     <li><b>Synonyms:</b> {meanings.synonyms + ""}</li>
                                     <li> <b>Antonyms:</b> {meanings.antonyms + " "} </li>
                                 <p></p>
-                                 {meanings.definitions.map((definitions) => (
-
-                                     <React.Fragment>
-
-                                     </React.Fragment>
-                                 ))}</li>
+                                 </li>
                             ))}
-
-
-
-
-
                         </React.Fragment>
                     )}
                 </ul>
