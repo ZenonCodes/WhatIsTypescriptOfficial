@@ -60,28 +60,29 @@ function App() {
                 <h1>SAY WHAT?</h1>
                 {word.length > 0 ? "" : img}
 
+
             <ul className="list-unstyled">
                     {word.map((word:any) =>
                         <React.Fragment>
                             <h2><u>{word.word} </u></h2>
                             <p></p>
                            <li> <i>Pronunciation: {word.phonetic}</i></li>
-                            <li> <i><b>Definition: </b></i> {word.meanings[0].definitions[0].definition}</li>
-                            <li> <i><b>Synonyms: </b></i> {word.meanings[0].synonyms}</li>
-                            <li> <i><b>Antonyms: </b></i> {word.meanings[0].antonyms}</li>
-                            {word.meanings.map((meanings) => (
+                            {word.meanings.map((meanings:any) => (
+                                <li><b> <u><b/>{meanings.partOfSpeech}</u> </b>
+                                    {meanings.definitions.map((definitions) => (
+                                        <p>
+                                        <li><b>Definition: </b>{definitions.definition}</li>
+                                            <li><i><b>{definitions.example ? "Example: " + definitions.example :""}</b></i></li>
 
-                                <li><b>{meanings.partOfSpeech} </b>
-                                    <p></p>
-                                    <li>  <b>Antonyms:</b> {meanings.antonyms + " "} </li>
+                                        </p>
+                                    ))}
                                     <li><b>Synonyms:</b> {meanings.synonyms + ""}</li>
-                                    <p></p>
-
+                                    <li> <b>Antonyms:</b> {meanings.antonyms + " "} </li>
+                                <p></p>
                                  {meanings.definitions.map((definitions) => (
+
                                      <React.Fragment>
-                                         <p></p>
-                                     <li><b>Definition: </b>{definitions.definition}</li>
-                                     <li><i><b>{definitions.example ? "Example: " + definitions.example :""}</b></i></li>
+
                                      </React.Fragment>
                                  ))}</li>
                             ))}
